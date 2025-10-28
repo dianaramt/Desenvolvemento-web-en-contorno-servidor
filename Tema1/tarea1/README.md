@@ -1,40 +1,11 @@
-Watch the video 👇
+Para completar esta tarea realiza las siguientes comprobaciones:
 
-[![Watch the video](https://img.youtube.com/vi/v-r_12oezds/maxresdefault.jpg)](https://youtu.be/v-r_12oezds)
+- Pantalla donde se muestre la url del navegador como localhost y el HTML ejecutado dentro de PHP:
 
-# docker-lamp
+<h2>Hola! Bienvenido al módulo de DWCS. Mi nombre es _____!</h2>
 
-Docker with Apache, MySQL, PHPMyAdmin and PHP.
+- Estado de los contenedores docker (docker compose ps).
 
-I use docker-compose as an orchestrator. To run these containers:
+- Estructura de directorios de Visual Studio Code con el proyecto clonado y viéndose el código del fichero index.php
 
-```
-docker compose up -d
-```
-
-Open phpmyadmin at [http://127.0.0.1:8000](http://127.0.0.1:8000)
-Open web browser to look at a simple php example at [http://127.0.0.1:80](http://127.0.0.1:80)
-
-Clone YourProject on `www/` and then, open web [http://127.0.0.1/YourProject](http://127.0.0.1/YourProject)
-
-Run MySQL client:
-
-- `docker compose exec db mysql -u root -p` 
-
-Infrastructure as code!
-
-You can read this a Spanish article in Crashell platform: [Apache, PHP, MySQL y PHPMyAdmin con Docker LAMP](https://www.crashell.com/estudio/apache_php_mysql_y_phpmyadmin_con_docker_lamp).
-
-
-### Infrastructure model
-
-![Infrastructure model](.infragenie/infrastructure_model.png)
-
-## Versiones
-
-### Versión v2.0
-
-- MySQL 9.0.1
-- PHP 8.2.23
-- PHPMyAdmin 5.2.1
-- Xdebug 3.3.2
+- Acceso a la base de datos a través de phpmyadmin en localhost, viéndose el contenido de la tabla creada.
