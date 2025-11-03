@@ -99,9 +99,17 @@
 
         funcion7();
 
-        #TODO función 8
+        date_default_timezone_set('Europe/Madrid'); #importante para que sea UTC+1 
 
+         function funcion8($latitud = 42.8782, $longitud = -8.5448) //imprimir salida sol
+                {
+                    $info = date_sun_info(time(), $latitud, $longitud);
+                
+                    echo 'Hora de salida del sol: ' . date("H:i:s", $info['sunrise']) . '<br>';
+                    echo 'Hora de puesta del sol: ' . date("H:i:s", $info['sunset']) . '<br>';
+                }
 
+                funcion8();
             ?>
 
     <!--TAREA 2- PROGRAMA MDO DNI -->

@@ -52,7 +52,8 @@ require_once("utils.php");
                                 echo "<p >Ainda non hai tareas</p>";
                             }
                             
-                                #TODO: que se visualice as tarefas
+                                #solo se visualizan as tareas que aparecen no array de utils e non as "gardadas"
+                                #xa que o script reiníciase e volve a inicializar o array
                             ?>
 
                         </tbody>

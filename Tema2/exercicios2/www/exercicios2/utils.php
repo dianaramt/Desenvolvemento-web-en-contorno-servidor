@@ -1,6 +1,9 @@
 <?php
 
-$tareas=[];
+$tareas=[ //para visualizar xa que non se poden gardar
+    [1,"facer un exercicio", "En proceso"],
+    [2,"ir ao ximnasio", "Completada"]
+];
 
 function devolverTareas(){
     global $tareas;
