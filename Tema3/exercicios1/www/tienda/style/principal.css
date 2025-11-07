@@ -1,0 +1,26 @@
+h1{
+    color: mediumvioletred;
+    background-color: antiquewhite;
+    margin: 0;
+    text-align: center;
+    padding: 10px;
+
+    cursor: pointer;
+}
+h1:hover{
+    color: purple;
+}
+
+body{
+    background-color: lightpink;
+}
+
+
+footer{
+    background-color: antiquewhite;
+    color: blueviolet;
+    text-align: center;
+    margin-top: 10px;
+
+    cursor: pointer;
+}
