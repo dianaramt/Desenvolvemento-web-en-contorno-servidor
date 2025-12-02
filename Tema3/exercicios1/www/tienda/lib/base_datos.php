@@ -41,9 +41,45 @@ function crear_taboa_usuarios($conexion){
     }
 }
 
+function seleccionar_bd_tenda($conexion)
+{
+    return $conexion->select_db("tenda");
+}
+
 function cerrar_conexion($conexion)
 {
     $conexion->close();
+}
+
+
+/*CRUD*/
+
+function dar_alta_usuario($nome, $apelidos, $idade,$provincia, $conexion){
+    $sql = "INSERT INTO usuarios (nombre, apellidos, edad, provincia) VALUES (?,?,?,?)";
+    $stmt = mysqli_prepare($conexion, $sql); 
+
+
+    mysqli_stmt_bind_param($stmt, "ssis", $nome, $apelidos, $idade, $provincia);
+    mysqli_stmt_execute($stmt);
+
+
+    mysqli_stmt_close($stmt);
+}
+
+function listar_usuarios($conexion){
+    $cantidade="";
+    $sql = "SELECT nombre, apellidos, edad, provincia FROM usuarios";
+    $resultados = $conexion->query($sql);
+
+        if($resultados->num_rows > 0){
+        $cantidade=true;
+        
+        }
+        else {
+        $cantidade=false;
+        }
+    return [$cantidade, $resultados];
+
 }
 
 

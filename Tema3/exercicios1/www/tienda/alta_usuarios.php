@@ -1,5 +1,6 @@
 <?php
 require "./lib/utilidades.php";
+require "./lib/base_datos.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,28 +16,52 @@ require "./lib/utilidades.php";
 include_once("./includes/header.php");
 
 ?>
-<?php
+<?php //LOXICA UNHA VEZ SE ENVIA O FORMULARIO
 
-$mensaxe="";
+$info="";
+$error="";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    if(empty($_POST["nome"]) || empty($_POST["apelidos"]) || empty($_POST["idade"])){
+    if(empty($_POST["nome"]) || empty($_POST["apelidos"]) || empty($_POST["idade"]) ||empty($_POST["provincia"])){
 
-        $mensaxe="Faltan datos";
+        $error="Faltan datos";
+
+    }else{
+         $nome = test_input($_POST["nome"]);
+        $apelidos = test_input($_POST["apelidos"]);
+        $idade = test_input($_POST["idade"]);
+        $provincia = test_input($_POST["provincia"]);
+
+        list($resultado, $conexion) = get_conexion();
+            if($resultado){
+            
+                seleccionar_bd_tenda($conexion);//IMPORTANTE
+                dar_alta_usuario($nome, $apelidos, $idade, $provincia, $conexion);
+
+                $info= "Douse de alta a un usuario";
+
+                cerrar_conexion($conexion);
+               
+
+            }else{
+                echo "<h3> NON HAI CONEXION</h3>";
+            }
 
     }
-  $nome = test_input($_POST["nome"]);
-  $apelidos = test_input($_POST["apelidos"]);
-  $idade = test_input($_POST["idade"]);
+ 
 }
 
 
 ?>
 
-<?= $mensaxe; ?>
+<?php
+echo "<h3 class='info'>".$info."</h3>";
+echo "<h3 class='error'>".$error."</h3>";
 
-<div class="white-box">
+?>
+
+<div class="white-box"> <!-- FORMULARIO A MANDAR -->
     <h3 class="alta">Alta de usuarios</h3>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post"> <!--Para mandalo á mesma paxina de forma segura mediante POST -->
     Nome: <input type="text" name="nome"> <!--Non necesita id -->

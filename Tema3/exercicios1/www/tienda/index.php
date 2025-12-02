@@ -19,6 +19,7 @@
         $resultado_creacion = crear_bd_tenda($conexion);
         if($resultado_creacion){
             echo "<h3> Creouse a BD ou xa estaba creada </h3>";
+            seleccionar_bd_tenda($conexion);
             $resultado_taboa= crear_taboa_usuarios($conexion);
             if($resultado_taboa){
                   echo "<h3> Creouse a taboa  </h3>";
@@ -46,7 +47,7 @@
 
     <p>
         <a class="btn" href="./alta_usuarios.php">Dar de alta usuario</a>
-         <a class="btn" href="./listar_usuarios.php">Lista de usuarios</a>
+         <a class="btn" href="./lista_usuarios.php">Lista de usuarios</a>
     </p>
 
 

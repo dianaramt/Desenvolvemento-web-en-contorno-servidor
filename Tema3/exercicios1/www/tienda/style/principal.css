@@ -109,3 +109,44 @@ input[type="submit"]:active{
     color: antiquewhite;
 }
 
+
+/*Mensaxes informativas */
+h3.info{
+    background-color:cornflowerblue;
+    color: black;
+    width: 100%;
+}
+
+h3.error{
+    background-color:red;
+    color: rgb(255, 255, 255);
+    width: 100%;
+}
+
+/* LISTAR USUARIOS*/
+th{
+    color: aliceblue;
+}
+table{
+    width: 100%;
+    background-color: mediumorchid;
+}
+    
+td>a{
+    text-decoration: none;
+}
+
+td>a:nth-child(1) { /*modificar */
+    color: pink;
+    background-color: darkgoldenrod;
+    padding:2px;
+}
+
+td>a:nth-child(2) { /*borrar */ 
+    color: pink;
+    background-color: darkred;
+     padding:2px;
+}
+td>a:hover{
+    background-color: blueviolet;
+}
