@@ -1,3 +1,9 @@
+html, body{ /*IMPORTANTISIMO PARA QQUE DESPOISA CADRE O FOOTER */ 
+    margin: 0;
+    width: 100%;
+}
+
+
 h1{
     color: mediumvioletred;
     background-color: antiquewhite;
@@ -11,16 +17,94 @@ h1:hover{
     color: purple;
 }
 
+h2{
+    background-color: antiquewhite;
+    text-align: center;
+    margin: 0px;
+    padding-bottom: 5px;
+}
+
 body{
     background-color: lightpink;
 }
 
 
 footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding-top: 2px;
+    padding-bottom: 2px;
+
+
+
     background-color: antiquewhite;
-    color: blueviolet;
+    color: rgb(78, 155, 1);
     text-align: center;
     margin-top: 10px;
 
     cursor: pointer;
 }
+a{
+    color: darkmagenta;
+}
+a:hover{
+    color: darkblue;
+}
+
+p{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+    position: absolute;
+    top: 40vh;
+    width: 100%;
+
+}
+button{
+    background-color: pink;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    width: 20%;
+    min-height: 20vh;
+
+
+}
+button:hover{
+    background-color: magenta;
+    font-weight: 700;
+}
+button:active{
+    background-color: rgb(174, 3, 174);
+}
+
+/*alta de usuarios*/
+h3.alta{
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: darkmagenta;
+     padding: 10px;
+     margin: 0;
+}
+
+form{
+    padding: 10px;
+}
+input[type="text"]:nth-of-type(3){
+    width: 5%;
+}
+.white-box{
+    background-color: pink;
+}
+input[type="submit"]{
+    background-color: darkmagenta;
+    color: antiquewhite;
+}
+input[type="submit"]:hover{
+    background-color: rgb(184, 70, 184);
+    color: antiquewhite;
+}
+input[type="submit"]:active{
+    background-color: rgb(194, 64, 194);
+    color: antiquewhite;
+}
+

@@ -1,7 +1,7 @@
 <?php
 echo "<footer>
 
- <a href='index.php'>Página de inicio</a>
+ <a href='./index.php'>Páxina de inicio</a>
 
 </footer>";
 
