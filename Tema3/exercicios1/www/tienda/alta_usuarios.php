@@ -1,3 +1,6 @@
+<?php
+require "./lib/utilidades.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +15,26 @@
 include_once("./includes/header.php");
 
 ?>
+<?php
+
+$mensaxe="";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    if(empty($_POST["nome"]) || empty($_POST["apelidos"]) || empty($_POST["idade"])){
+
+        $mensaxe="Faltan datos";
+
+    }
+  $nome = test_input($_POST["nome"]);
+  $apelidos = test_input($_POST["apelidos"]);
+  $idade = test_input($_POST["idade"]);
+}
+
+
+?>
+
+<?= $mensaxe; ?>
 
 <div class="white-box">
     <h3 class="alta">Alta de usuarios</h3>

@@ -29,6 +29,8 @@
         }else{
             echo "<h3> Non se puido crear a BD </h3>";
         }
+        cerrar_conexion($conexion);
+        echo "<h3> Cerrouse a conexión </h3>";
 
     }else{
          echo "<h3> NON  </h3>";
@@ -43,8 +45,8 @@
     
 
     <p>
-        <button>Dar de alta usuario</button>
-        <button>Lista de usuarios</button>
+        <a class="btn" href="./alta_usuarios.php">Dar de alta usuario</a>
+         <a class="btn" href="./listar_usuarios.php">Lista de usuarios</a>
     </p>
 
 

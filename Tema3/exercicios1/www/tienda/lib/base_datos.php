@@ -41,6 +41,12 @@ function crear_taboa_usuarios($conexion){
     }
 }
 
+function cerrar_conexion($conexion)
+{
+    $conexion->close();
+}
+
+
 
 
 ?>

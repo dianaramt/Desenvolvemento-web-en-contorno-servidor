@@ -62,19 +62,20 @@ p{
     width: 100%;
 
 }
-button{
+.btn{
     background-color: pink;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     width: 20%;
     min-height: 20vh;
+    padding: 10px;
 
 
 }
-button:hover{
+.btn:hover{
     background-color: magenta;
     font-weight: 700;
 }
-button:active{
+.btn:active{
     background-color: rgb(174, 3, 174);
 }
 
