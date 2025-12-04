@@ -48,16 +48,19 @@ require "./lib/base_datos.php";
 
          if($cantidade){
               while ($row = $usuarios->fetch_assoc()){
+                $id = $row["id"];
                 echo"<tr>";
                 echo "<td>".$row["nombre"]."</td>";
                 echo "<td>".$row["apellidos"]."</td>";
                 echo "<td>".$row["edad"]."</td>";
                 echo "<td>".$row["provincia"]."</td>";
-                echo "<td><a href=''>Modificar</a><a href=''>Borrar</a></td>";
+                echo "<td><a href='./editar_usuario.php?id={$id}'>Modificar</a><a href=''>Borrar</a></td>";
                 echo"</tr>";
 
             }
          }
+
+         cerrar_conexion($conexion);
 
          }else{//non se puido facer conexion
 

@@ -68,7 +68,7 @@ function dar_alta_usuario($nome, $apelidos, $idade,$provincia, $conexion){
 
 function listar_usuarios($conexion){
     $cantidade="";
-    $sql = "SELECT nombre, apellidos, edad, provincia FROM usuarios";
+    $sql = "SELECT id, nombre, apellidos, edad, provincia FROM usuarios";
     $resultados = $conexion->query($sql);
 
         if($resultados->num_rows > 0){
@@ -82,7 +82,32 @@ function listar_usuarios($conexion){
 
 }
 
+/*Para editar_usuario.php */
+function obter_usuario($conexion, $id){
 
+    $sql = "SELECT nombre, apellidos, edad, provincia FROM usuarios WHERE id={$id}";
+    $resultados = $conexion->query($sql);
+
+    return $resultados;
+
+
+}
+
+function modificar_usuario($conexion, $id, $nombre, $apellidos, $edad, $provincia){
+    $resultado ="";
+
+    $sql = "UPDATE usuarios SET nombre='{$nombre}', apellidos='{$apellidos}', edad={$edad}, provincia='{$provincia}'  WHERE id={$id}";
+    if ($conexion->query($sql)) {//puido actualizarse
+        $resultado = true;
+        $mensaxe = "Usuario actualizado correctamente";
+    }
+    else { //non puido actualizarse
+        $resultado = false;
+        $mensaxe= "Error actualizando: ". $conexion->error;
+    }
+
+    return [$resultado, $mensaxe];
+}
 
 
 ?>
