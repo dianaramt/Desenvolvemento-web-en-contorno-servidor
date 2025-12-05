@@ -32,10 +32,10 @@ footer{
     display: flex;
     flex-direction: row;
     justify-content: center;
+    align-items: center;
 
     background-color: firebrick;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    height: 50px;
 
 }
 
@@ -51,4 +51,63 @@ footer>a>button:hover{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: lightblue;
     border: 0;
+}
+
+.consola{
+    position: fixed;
+    bottom: 50px;
+    width: 100%;
+    background-color: darkslategray;
+    color:lime
+    
+}
+.consola>p{
+    padding-left: 10px;
+}
+
+main{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    gap: 25vw;
+    height: 50vh;
+
+}
+main>a{
+   
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+        text-decoration: none;
+
+
+}
+
+main>a>button{
+
+        height: 100px;
+
+    background-color: aliceblue;
+    border: 0;
+    text-decoration: none;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: x-large;
+
+}
+
+main>a>button:hover{
+
+     background-color: firebrick;
+     color: antiquewhite;
+}
+
+main>a>button:active{
+
+     background-color: firebrick;
+     color: antiquewhite;
+     border: blue 4px solid;
 }
