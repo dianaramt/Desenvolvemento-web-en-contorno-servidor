@@ -15,6 +15,52 @@ require "./lib/base_datos.php";
     include_once("./includes/header.php");
     ?>
 
+<?php // se borramos
+
+$info ="";
+$error="";
+
+if (isset($_GET["id"])){
+
+    $id_usuario = $_GET["id"];
+
+    list($resultado, $conexion) = get_conexion();
+         if($resultado){
+              seleccionar_bd_tenda($conexion);
+         list($resultado, $mensaxe) = borrar_usuario($conexion, $id_usuario);
+
+         if($resultado){ //puido borrarse
+
+            $info = $mensaxe;
+              
+         }else{
+            $error=$mensaxe;
+         }
+
+         cerrar_conexion($conexion);
+
+         echo '<meta http-equiv="refresh" content="2; url=lista_usuarios.php">'; //INTERESANTISIMOOO!!!
+
+         }else{//non se puido facer conexion
+
+         }
+
+
+
+}
+
+
+
+
+
+?>
+
+<?php
+echo "<h3 class='info'>".$info."</h3>";
+echo "<h3 class='error'>".$error."</h3>";
+
+?>
+
     
 <div class="white-box">
     <h3 class="alta">Lista de usuarios dados de alta</h3>
@@ -54,7 +100,7 @@ require "./lib/base_datos.php";
                 echo "<td>".$row["apellidos"]."</td>";
                 echo "<td>".$row["edad"]."</td>";
                 echo "<td>".$row["provincia"]."</td>";
-                echo "<td><a href='./editar_usuario.php?id={$id}'>Modificar</a><a href=''>Borrar</a></td>";
+                echo "<td><a href='./editar_usuario.php?id={$id}'>Modificar</a><a href='./lista_usuarios.php?id={$id}'>Borrar</a></td>";
                 echo"</tr>";
 
             }

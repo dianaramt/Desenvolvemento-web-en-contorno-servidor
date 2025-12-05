@@ -110,4 +110,22 @@ function modificar_usuario($conexion, $id, $nombre, $apellidos, $edad, $provinci
 }
 
 
+/*BORRAR */
+
+function borrar_usuario($conexion, $id){
+
+ 
+    $sql = "DELETE FROM usuarios WHERE id={$id}";
+    if ($conexion->query($sql)) {
+        $resultado = true;
+        $mensaxe ="Eliminado correctamente";
+    }
+    else {
+        $resultado = false;
+        $mensaxe = "Error eliminando: " . $conexion->error;
+    }
+    return [$resultado, $mensaxe];
+}
+
+
 ?>

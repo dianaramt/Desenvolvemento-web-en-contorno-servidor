@@ -41,6 +41,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 list($resultado, $mensaxe) = modificar_usuario($conexion, $id, $nome, $apelidos, $idade, $provincia);
                 if ($resultado){
                     $info = $mensaxe; 
+
+                    echo '<meta http-equiv="refresh" content="3; url=lista_usuarios.php">';
                 }else{
                     $error=$mensaxe;
                 }
@@ -139,7 +141,6 @@ if (isset($_GET["id"])){
     <input type="hidden" name="id" value="<?php if (isset($id_usuario)){echo "{$id_usuario}";} else{echo "{$id}";}?> ">
     <input type="submit" name="submit" value="Modificar usuario"> 
     
-    <?php echo $provincia;?>
     </form>
 </div>
 
