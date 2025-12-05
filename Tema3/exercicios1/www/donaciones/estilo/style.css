@@ -1,0 +1,54 @@
+html, body{
+    margin: 0;
+    width: 100%;
+
+    background-color:deepskyblue;
+
+}
+header{
+    background-color: firebrick;
+    color: aliceblue;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+h1, h2{
+    margin: 0;
+}
+
+h1{
+    padding-top: 10px;
+}
+h2{
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    background-color: firebrick;
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+}
+
+footer>a>button{
+    background-color: lightblue;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: firebrick;
+    border: 0;
+}
+
+footer>a>button:hover{
+    background-color: blue;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: lightblue;
+    border: 0;
+}
