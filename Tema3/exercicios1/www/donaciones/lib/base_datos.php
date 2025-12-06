@@ -201,4 +201,42 @@ function get_doazons_doante($conexion, $id){
         return [false, null];        //non ten doazons
     }
 }
+
+function meter_doazon($conexion, $id, $data, $proxima){
+    $sql = "INSERT INTO historico (idDonante, fechaDonacion, proximaDonacion)
+            VALUES (:idDonante, :fechaDonacion, :proximaDonacion)";
+
+    $stmt = $conexion->prepare($sql);
+
+
+    $stmt->bindParam(":idDonante", $id, PDO::PARAM_INT);
+    $stmt->bindParam(":fechaDonacion", $data, PDO::PARAM_STR);      // DATE en MySQL = STRING en PHP
+    $stmt->bindParam(":proximaDonacion", $proxima, PDO::PARAM_STR);
+
+  
+    $stmt->execute();
+
+    
+    if ($stmt->rowCount() > 0) {
+        return [true, "Nova doazón na BD"];
+    } else {
+        return [false, "Non se meteu na BD a nova doazón"];
+    }
+}
+
+function get_doante_codPostal($conexion, $codigo){
+    $sql = "SELECT id, nombre, apellidos, edad, telefono,grupoSanguineo, codigoPostal  FROM donantes  WHERE codigoPostal = :codigoPostal";
+    $stmt = $conexion->prepare($sql);
+    $stmt->bindParam(":codigoPostal", $codigo, PDO::PARAM_STR);
+    $stmt->execute();
+
+    $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC); //obter fila
+
+    if ($resultado) {
+        return [true, $resultado];   //atopouse o doante minimo
+    } else {
+        return [false, null];        //non existe ningun con ese codigo postal
+    }
+
+}
 ?>

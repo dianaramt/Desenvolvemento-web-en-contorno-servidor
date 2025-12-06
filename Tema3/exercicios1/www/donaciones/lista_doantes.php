@@ -15,8 +15,42 @@ require "./lib/base_datos.php";
 
 
 <?php //eliminar (ponse antes para que xa se vexa que se eliminou)
+if (isset($_POST["codigoPostal"])){
+    $codigo= $_POST["codigoPostal"];
 
-if (isset($_GET["id"])){
+    $mensaxes=array(); //para mostrar mensaxes informativas
+    
+        list($resultado, $mensaxe, $conexion)=get_conexion();
+        if($resultado){//puido facerse conexion
+            array_push($mensaxes, $mensaxe);
+
+            list ($resultado, $mensaxe) =seleccionar_bd_donacion($conexion);
+            if($resultado){ //puido seleccionarse a BD DONACION
+                array_push($mensaxes, $mensaxe);
+                list($resultado, $doantes)= get_doante_codPostal($conexion, $codigo);
+                array_push($mensaxes, $mensaxe);
+               
+
+            }else{
+                array_push($mensaxes, $mensaxe);
+
+            }
+
+        //CERRAMOS A CONEXION!!
+        $mensaxe= cerrar_conexion($conexion);
+         array_push($mensaxes, $mensaxe);
+
+
+        }else{
+            array_push($mensaxes, $mensaxe);
+        }
+
+        //amosar mensaxes informativas
+        foreach($mensaxes as $m){
+        echo "<p>{$m}</p>";
+        }
+}
+else if (isset($_GET["id"])){
 
     $mensaxes=array(); //para mostrar mensaxes informativas
     $id_usuario = $_GET["id"];
@@ -50,9 +84,9 @@ if (isset($_GET["id"])){
         }
 
 }
-?>
-<?php //coller da bd os datos
 
+//collar doantes se non buscamos por codigoPostal
+else{
 $mensaxes=array(); //para mostrar mensaxes informativas
     
         list($resultado, $mensaxe, $conexion)=get_conexion();
@@ -84,10 +118,16 @@ $mensaxes=array(); //para mostrar mensaxes informativas
         echo "<p>{$m}</p>";
         }
 
+    }
 
 ?>
 <main class=listaDoantes>
     <h3>Lista de doantes</h3>
+     <form method="post" action="<?= htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+      Buscar por código postal <input type="text" name="codigoPostal">
+      <br>
+      <input type="submit" name="buscar" value="Submit"> 
+    </form>
     <table border="1">
         <thead>
             <th>ID</th>
@@ -101,7 +141,15 @@ $mensaxes=array(); //para mostrar mensaxes informativas
         </thead>
         <tbody>
             <?php
-            foreach($doantes as $doante){
+
+     
+
+
+
+
+
+
+                 foreach($doantes as $doante){
                 echo "<tr>";
                 echo "<td>{$doante['id']}</td>";
                 echo "<td>{$doante['nombre']}</td>";
@@ -112,6 +160,10 @@ $mensaxes=array(); //para mostrar mensaxes informativas
                 echo "<td>{$doante['telefono']}</td>";
                 echo'<td><a href="./lista_doazons.php?id='.$doante["id"].'"><button>Doazóns</button></a> <a href="./lista_doantes.php?id='.$doante["id"].'"><button>Eliminar</button></a></td>'; 
             }
+
+
+        
+           
             ?>
             
         </tbody>

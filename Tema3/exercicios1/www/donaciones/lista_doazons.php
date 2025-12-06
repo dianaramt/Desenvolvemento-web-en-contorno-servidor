@@ -1,5 +1,6 @@
 <?php
 require "./lib/base_datos.php";
+require "./lib/utilidades.php";
 
 ?>
 <!DOCTYPE html>
@@ -16,8 +17,50 @@ require "./lib/base_datos.php";
  include_once("./includes/header.php");
 ?>
 
-<?php //cando ven de un doante
-if(isset($_GET["id"])){
+<?php 
+
+
+if(isset($_GET["data"])){ //cando se quere facer unha nova doazón
+
+    $id_doante= $_GET["id"];
+    $fecha= $_GET["data"];
+    $proxima=obter_data_4meses_despois($fecha);
+    $mensaxes=array(); //para mostrar mensaxes informativas
+    
+        list($resultado, $mensaxe, $conexion)=get_conexion();
+        if($resultado){//puido facerse conexion
+            array_push($mensaxes, $mensaxe);
+
+            list ($resultado, $mensaxe) =seleccionar_bd_donacion($conexion);
+            if($resultado){ //puido seleccionarse a BD DONACION
+                array_push($mensaxes, $mensaxe);
+                list($resultado, $mensaxe)= meter_doazon($conexion, $id_doante, $fecha, $proxima);
+                array_push($mensaxes, $mensaxe);
+                
+
+            }else{
+                array_push($mensaxes, $mensaxe);
+
+            }
+
+        //CERRAMOS A CONEXION!!
+        $mensaxe= cerrar_conexion($conexion);
+         array_push($mensaxes, $mensaxe);
+
+
+        }else{
+            array_push($mensaxes, $mensaxe);
+        }
+
+        //amosar mensaxes informativas
+        foreach($mensaxes as $m){
+        echo "<p>{$m}</p>";
+        }
+
+
+
+}
+if(isset($_GET["id"])){ //cando ven de un doante
     $id_doante= $_GET["id"];
 
     $mensaxes=array(); //para mostrar mensaxes informativas
