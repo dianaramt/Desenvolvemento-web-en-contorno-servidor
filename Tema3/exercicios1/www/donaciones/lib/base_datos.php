@@ -112,4 +112,39 @@ function crear_taboa_administradores($conexion){
 
 }
 
+/*ALTA DONANTE */
+
+function dar_alta_doante($conexion, $nome, $apelidos, $idade, $grupo, $codigo, $telefono){
+
+    $stmt = $conexion->prepare("INSERT INTO donantes (nombre, apellidos, edad, grupoSanguineo, codigoPostal, telefono) VALUES (:nome, :apelidos, :idade, :grupo, :codigo, :telefono)");
+    $stmt->bindParam(':nome', $nome);
+    $stmt->bindParam(':apelidos', $apelidos);
+    $stmt->bindParam(':idade', $idade);
+    $stmt->bindParam(':grupo', $grupo);
+    $stmt->bindParam(':codigo', $codigo);
+    $stmt->bindParam(':telefono', $telefono);
+
+
+    $stmt->execute();
+
+    $stmt->closeCursor();
+
+   return "Foi dado de alta o doante {$nome} {$apelidos}";
+
+
+
+
+}
+
+/*LISTA DOANTES*/
+function listar_doantes($conexion){
+
+    $stmt = $conexion->prepare("SELECT id, nombre, apellidos,edad,grupoSanguineo,codigoPostal,telefono FROM donantes");
+    $stmt->execute();
+
+    $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    $resultados = $stmt->fetchAll();
+    return $resultados;
+
+}
 ?>

@@ -65,7 +65,7 @@ footer>a>button:hover{
     padding-left: 10px;
 }
 
-main{
+main.principal{
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -76,7 +76,7 @@ main{
     height: 50vh;
 
 }
-main>a{
+main.principal>a{
    
     display: flex;
     flex-direction: column;
@@ -87,7 +87,7 @@ main>a{
 
 }
 
-main>a>button{
+main.principal>a>button{
 
         height: 100px;
 
@@ -99,15 +99,55 @@ main>a>button{
 
 }
 
-main>a>button:hover{
+main.principal>a>button:hover{
 
      background-color: firebrick;
      color: antiquewhite;
 }
 
-main>a>button:active{
+main.principal>a>button:active{
 
      background-color: firebrick;
      color: antiquewhite;
      border: blue 4px solid;
+}
+
+/* ALTA DOANTES*/
+form{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    display: flex;
+    flex-direction: column;
+    background-color: blanchedalmond;
+    padding-left: 20px;
+}
+form>input, form>select
+{
+    width: 20vw;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+form>button{
+    width: 10vw;
+    margin-bottom: 10px;
+    background-color: lightblue;
+    color: firebrick;
+    font-size: large;
+}
+
+form>button:hover{
+
+    color: lightblue;
+    background-color: blue;
+}
+/*lista doantes*/
+
+main.listaDoantes>table{
+    width: 100%;
+    background-color: antiquewhite;
+    font-size: large;
+}
+main.listaDoantes>h3{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding-left: 5px;
+    color: firebrick;
 }

@@ -12,7 +12,7 @@ require './lib/base_datos.php';
 <body>
 <?php  include_once("./includes/header.php")?>
 
-<main>
+<main class= "principal">
     <a href="./alta_doantes.php"><button>Alta de nov@ doante</button></a>
     <a href="./lista_doantes.php"><button>Lista de doantes</button></a>
 
