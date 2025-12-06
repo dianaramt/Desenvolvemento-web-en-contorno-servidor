@@ -12,6 +12,45 @@ require "./lib/base_datos.php";
 <body>
 
 <?php  include_once("./includes/header.php")?>
+
+
+<?php //eliminar (ponse antes para que xa se vexa que se eliminou)
+
+if (isset($_GET["id"])){
+
+    $mensaxes=array(); //para mostrar mensaxes informativas
+    $id_usuario = $_GET["id"];
+    list($resultado, $mensaxe, $conexion)=get_conexion();
+        if($resultado){//puido facerse conexion
+            array_push($mensaxes, $mensaxe);
+
+            list ($resultado, $mensaxe) =seleccionar_bd_donacion($conexion);
+            if($resultado){ //puido seleccionarse a BD DONACION
+                array_push($mensaxes, $mensaxe);
+                $mensaxe= borrar_doante($conexion, $id_usuario);
+                array_push($mensaxes, $mensaxe);
+
+            }else{
+                array_push($mensaxes, $mensaxe);
+
+            }
+
+        //CERRAMOS A CONEXION!!
+        $mensaxe= cerrar_conexion($conexion);
+         array_push($mensaxes, $mensaxe);
+
+
+        }else{
+            array_push($mensaxes, $mensaxe);
+        }
+
+        //amosar mensaxes informativas
+        foreach($mensaxes as $m){
+        echo "<p>{$m}</p>";
+        }
+
+}
+?>
 <?php //coller da bd os datos
 
 $mensaxes=array(); //para mostrar mensaxes informativas
@@ -71,7 +110,7 @@ $mensaxes=array(); //para mostrar mensaxes informativas
                 echo "<td>{$doante['grupoSanguineo']}</td>";
                 echo "<td>{$doante['codigoPostal']}</td>";
                 echo "<td>{$doante['telefono']}</td>";
-                echo'<td><a href=""><button>Rexistrar donación</button></a> <a href=""><button></button></a></td>'; //TODO: CONTINUAR AQUI
+                echo'<td><a href="./lista_doazons.php?id='.$doante["id"].'"><button>Doazóns</button></a> <a href="./lista_doantes.php?id='.$doante["id"].'"><button>Eliminar</button></a></td>'; 
             }
             ?>
             

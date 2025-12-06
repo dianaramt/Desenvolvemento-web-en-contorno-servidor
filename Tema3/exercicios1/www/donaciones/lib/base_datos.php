@@ -147,4 +147,58 @@ function listar_doantes($conexion){
     return $resultados;
 
 }
+
+/*BORRAR DOANTE*/
+
+
+function borrar_doante($conexion, $id){
+
+     $sql = "DELETE FROM donantes WHERE id = :id";
+    $stmt = $conexion->prepare($sql);
+    $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+    $stmt->execute();
+
+    // Saber cuántas filas se borraron
+    $filas = $stmt->rowCount();
+
+    if ($filas > 0) {
+        return "Borrouse correctamente o doante con id = {$id}";
+    } else {
+        return "Non se borrou nada porque non existe ningún doante con id = {$id}";
+    }
+    
+
+}
+/*PAXINA LISTA_DOAZONS*/
+
+function get_info_doante($conexion, $id){
+    $sql = "SELECT nombre, apellidos, edad, telefono,grupoSanguineo  FROM donantes  WHERE id = :id";
+    $stmt = $conexion->prepare($sql);
+    $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+    $stmt->execute();
+
+    $resultado = $stmt->fetch(PDO::FETCH_ASSOC); //obter fila
+
+    if ($resultado) {
+        return [true, $resultado];   //atopouse o doante
+    } else {
+        return [false, null];        //non existe
+    }
+
+}
+
+function get_doazons_doante($conexion, $id){
+     $sql = "SELECT fechaDonacion, proximaDonacion  FROM historico  WHERE idDonante = :id ORDER BY fechaDonacion DESC";
+    $stmt = $conexion->prepare($sql);
+    $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+    $stmt->execute();
+
+    $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC); //importante!!MAIS DE UNHA
+
+    if ($resultado) {
+        return [true, $resultado];   //atopouse unha doazon minimo
+    } else {
+        return [false, null];        //non ten doazons
+    }
+}
 ?>

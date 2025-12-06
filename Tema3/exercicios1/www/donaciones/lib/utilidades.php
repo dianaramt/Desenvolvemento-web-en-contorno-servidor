@@ -35,5 +35,11 @@ function confirmar_telefono($telefono){
 
 }
 
+function obter_data_4meses_despois($fecha){
+    $nova = date("Y-m-d", strtotime("$fecha +4 months")); //no formato xa para meter na bd
+    return $nova;
+
+}
+
 ?>
 
