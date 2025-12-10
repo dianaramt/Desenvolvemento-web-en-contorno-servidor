@@ -87,6 +87,7 @@ if(isset($_GET["id"])){
                 <input type="password" name="contrasinal" >
                 <br><br>
                 
+                
 
 
                 <input type="hidden" name="id" value=<?= $id_usuario ?>>
