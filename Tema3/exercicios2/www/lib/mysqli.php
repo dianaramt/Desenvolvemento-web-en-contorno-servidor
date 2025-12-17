@@ -84,4 +84,24 @@ return [true, $resultados];
 
 }
 
+function obter_nomeusuario($conexion, $id){
+    try {
+
+$sql = "SELECT username FROM usuarios WHERE id = ".$id;
+  $conexion->select_db('tareas');
+$resultado = $conexion->query($sql);
+ if ($resultado && $resultado->num_rows > 0) {
+            $fila = $resultado->fetch_assoc();
+            return [true, $fila['username']]; 
+        } else {
+            return [false, 'Usuario no encontrado'];
+        }
+
+    
+    } catch(mysqli_sql_exception $e){
+         return [false, 'Error: '. $e->getMessage()];
+    }
+
+}
+
 ?>

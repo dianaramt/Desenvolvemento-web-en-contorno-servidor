@@ -35,13 +35,16 @@ require_once("./lib/mysqli.php");
                             <?php
                             list($resultado, $conexion)= get_conexion_mysqli();
                             if($resultado!=null){
-                                list($resultado, $tareas) = obter_tareas($resultado);
+                                $conexion =$resultado;
+                                list($resultado, $tareas) = obter_tareas($conexion);
                                 if($resultado){
                                     foreach($tareas as $tarea){
+
+                                        list($resultado, $nome_usuario) = obter_nomeusuario($conexion, $tarea["id_usuario"]);
                                         echo "<tr>";
                                         echo "<td>".$tarea["id"]."</td>";
                                         echo "<td>".$tarea["titulo"]."</td>";
-                                        echo "<td>".$tarea["id_usuario"]."</td>";
+                                        echo "<td>".$nome_usuario."</td>";
                                         echo "<td>".$tarea["descripcion"]."</td>";
                                         echo "<td>".$tarea["estado"]."</td>";
                                          echo "<td><a><button>Editar</button> </a> <a><button>Eliminar</button> </a></td>";
