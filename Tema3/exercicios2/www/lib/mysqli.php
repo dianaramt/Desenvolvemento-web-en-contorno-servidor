@@ -69,4 +69,19 @@ function crear_tabla_tareas($conexion){
 
 }
 
+function obter_tareas($conexion){
+    try {
+
+$sql = "SELECT id, titulo, descripcion, estado, id_usuario FROM tareas";
+  $conexion->select_db('tareas');
+$resultados = $conexion->query($sql);
+return [true, $resultados];
+
+    
+    } catch(mysqli_sql_exception $e){
+         return [false, 'Error: '. $e->getMessage()];
+    }
+
+}
+
 ?>

@@ -1,5 +1,6 @@
 <?php
-require_once("utils.php");
+require_once("./lib/utils.php");
+require_once("./lib/mysqli.php");
 ?>
 
 <!DOCTYPE html>
@@ -23,37 +24,39 @@ require_once("utils.php");
                         <thead class="thead">
                             <tr>                            
                                 <th>Identificador</th>
+                                <th>Título</th>
+                                <th>Nome de usuario</th>
                                 <th>Descripción</th>
                                 <th>Estado</th>
+                                <th>Accións</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
-                            $tareas = devolverTareas();
-                            if(!empty($tareas)){
-                                foreach ($tareas as $tarea) {
-                                    echo "<tr>";
-                                    echo "<td>";
-                                    echo $tarea[0];
-                                    echo "</td>";
-                                    echo "<td>";
-                                    echo $tarea[1];
-                                    echo "</td>";
-                                    echo "<td>";
-                                    echo $tarea[2];
-                                    echo "</td>";
+                            list($resultado, $conexion)= get_conexion_mysqli();
+                            if($resultado!=null){
+                                list($resultado, $tareas) = obter_tareas($resultado);
+                                if($resultado){
+                                    foreach($tareas as $tarea){
+                                        echo "<tr>";
+                                        echo "<td>".$tarea["id"]."</td>";
+                                        echo "<td>".$tarea["titulo"]."</td>";
+                                        echo "<td>".$tarea["id_usuario"]."</td>";
+                                        echo "<td>".$tarea["descripcion"]."</td>";
+                                        echo "<td>".$tarea["estado"]."</td>";
+                                         echo "<td><a><button>Editar</button> </a> <a><button>Eliminar</button> </a></td>";
 
 
-                                    echo "</tr>";
+                                        echo "</tr>";
 
-                            
+                                    }
+                                    
                                 }
+
                             }else{
-                                echo "<p >Ainda non hai tareas</p>";
+                                //problema ca conexion
                             }
-                            
-                                #solo se visualizan as tareas que aparecen no array de utils e non as "gardadas"
-                                #xa que o script reiníciase e volve a inicializar o array
+                           
                             ?>
 
                         </tbody>

@@ -12,12 +12,17 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="usuarios.php">
+                    Lista usuarios 
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="nuevoUsuarioForm.php">
                     Nuevo usuario 
                 </a>
             </li>
              <li class="nav-item">
-                <a class="nav-link" href="listaTareas.php">
+                <a class="nav-link" href="tareas.php">
                     Mis tareas
                 </a>
             </li>
