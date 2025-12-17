@@ -25,7 +25,8 @@ require_once("./lib/mysqli.php");
         $estado =  trim($_POST["estado"]);
         $id_usuario =  trim($_POST["usuario"]);
 
-        
+        //TODO: metela na BD usando mysqli poo
+
 
         
     }
