@@ -1,3 +1,8 @@
+<?php
+require_once("./lib/utils.php");
+require_once("./lib/mysqli.php");
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -17,14 +22,39 @@
                 <h3>Nueva Tarea</h3>
                 <form class="mb-5" action="nueva.php" method="POST">
                     <div class="mb-3">
+                        <label class="form-label">Título</label>
+                        <input class="form-control" name="titulo" required>
+                    </div>
+                    
+                    <div class="mb-3">
                         <label class="form-label">Descripción</label>
                         <input class="form-control" name="descripcion" required>
                     </div>
                     <div class="mb-3">
+                        Estado:
                         <select class="form-select" name="estado" required>
                             <option>Pendiente</option>
                             <option>En proceso</option>
                             <option>Completada</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        Usuario:
+                        <select class="form-select" name="usuario" required>
+                            <?php
+
+                            list($conexion, $mensaxe) = get_conexion_mysqli();
+                            if($conexion !=null){
+                                list($resultado, $resultados)= obter_usuarios_con_username($conexion);
+                                foreach($resultados as $resultado){
+                                    echo "<option value='".$resultado["id"]."'>".$resultado["username"]."</option>";
+                                }
+                            }else{
+                                //non se puido facer conexion
+                            }
+
+
+?>
                         </select>
                     </div>
                     <button type="submit" class="btn btn-primary">Enviar</button>

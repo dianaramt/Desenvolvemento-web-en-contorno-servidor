@@ -104,4 +104,19 @@ $resultado = $conexion->query($sql);
 
 }
 
+function obter_usuarios_con_username($conexion){
+    try {
+
+$sql = "SELECT id, username FROM usuarios";
+  $conexion->select_db('tareas');
+$resultados = $conexion->query($sql);
+ return [true, $resultados];
+
+    
+    } catch(mysqli_sql_exception $e){
+         return [false, 'Error: '. $e->getMessage()];
+    }
+
+}
+
 ?>

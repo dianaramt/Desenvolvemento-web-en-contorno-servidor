@@ -1,5 +1,6 @@
 <?php
 require_once("utils.php");
+require_once("./lib/mysqli.php");
 ?>
 
 <!DOCTYPE html>
@@ -20,15 +21,13 @@ require_once("utils.php");
     <?php
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $descripcion = trim($_POST["descripcion"]);
-        $estado = trim($_POST["estado"]);
+        $titulo = trim($_POST["titulo"]);
+        $estado =  trim($_POST["estado"]);
+        $id_usuario =  trim($_POST["usuario"]);
 
-        if (guardarTarea($descripcion, $estado)) {
-            echo "<div class='alert alert-success'>✅A tarea foi gardada correctamente.</div>";
-        } else {
-            echo "<div class='alert alert-danger'>❌ Error: Houbo un erro gardando a tarea</div>";
-        }
-    } else {
-        echo "<div class='alert alert-warning'>⚠️ No se recibieron datos del formulario.</div>";
+        
+
+        
     }
     ?>
 </main>
