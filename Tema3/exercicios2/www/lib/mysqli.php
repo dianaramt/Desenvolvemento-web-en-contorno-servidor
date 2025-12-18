@@ -119,4 +119,25 @@ $resultados = $conexion->query($sql);
 
 }
 
+function meter_tarefa($conexion, $titulo, $descripcion, $estado, $id_usuario){
+    try{
+         $conexion->select_db('tareas');
+         $stmt = $conexion->prepare("INSERT INTO tareas (titulo, descripcion, estado, id_usuario) 
+    VALUES (?,?,?,?)");
+
+    $stmt->bind_param("sssi", $titulo, $descripcion, $estado, $id_usuario);
+
+
+    $stmt->execute(); 
+
+    $stmt->close();
+    return [true, "Insertouse a tarefa correctamente <br>"];
+
+
+    }catch(mysqli_sql_exception $e){
+         return [false, 'Error: '. $e->getMessage()];
+    }
+   
+}
+
 ?>

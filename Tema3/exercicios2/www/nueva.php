@@ -1,5 +1,5 @@
 <?php
-require_once("utils.php");
+require_once("./lib/utils.php");
 require_once("./lib/mysqli.php");
 ?>
 
@@ -20,17 +20,35 @@ require_once("./lib/mysqli.php");
 
     <?php
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $descripcion = trim($_POST["descripcion"]);
-        $titulo = trim($_POST["titulo"]);
-        $estado =  trim($_POST["estado"]);
-        $id_usuario =  trim($_POST["usuario"]);
+        $descripcion = test_input(trim($_POST["descripcion"]));
+        $titulo = test_input(trim($_POST["titulo"]));
+        $estado =  test_input(trim($_POST["estado"]));
+        $id_usuario =  test_input(trim($_POST["usuario"]));
 
-        //TODO: metela na BD usando mysqli poo
+        list($conexion, $mensaxe) = get_conexion_mysqli();
+        if($conexion!=null){
+            list($resultado, $mensaxe) = meter_tarefa($conexion, $titulo, $descripcion, $estado, $id_usuario);
 
+
+        }else{
+            //non se puido facer conexion
+        }
+
+
+
+
+    
 
         
     }
     ?>
+    <div>
+        <?php
+        if(isset($resultado)){
+            echo $mensaxe;
+        }
+        ?>
+    </div>
 </main>
 
 <?php include("elementos/footer.php"); ?>
